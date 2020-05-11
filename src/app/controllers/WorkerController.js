@@ -42,7 +42,7 @@ class WorkerController {
 
   async index(req, res) {
     const workers = await Worker.findAll({
-      attributes: ['id', 'name', 'email', 'avatar_id'],
+      attributes: ['id', 'name', 'nickname', 'avatar_id'],
       include: [
         {
           model: File,

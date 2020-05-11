@@ -19,7 +19,9 @@ class T_FeedController {
 
     await Notification.create({
       content: `Mensagem de ${tfeed.worker_id}.`,
+      task: tfeed.task_id,
       user: tfeed.user_id,
+      worker: tfeed.worker_id,
     });
 
     return res.json(tfeed);

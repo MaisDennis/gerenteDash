@@ -6,11 +6,24 @@ const NotificationSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    user: {
+    task: {
       type: Number,
       required: true,
     },
-    read: {
+    user: {
+      type: Number,
+      required: false,
+    },
+    userread: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    worker: {
+      type: Number,
+      required: false,
+    },
+    workerread: {
       type: Boolean,
       required: true,
       default: false,

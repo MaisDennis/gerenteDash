@@ -31,8 +31,10 @@ routes.use(authMiddleware);
 // -----------------------------------------------------------------------------
 
 routes.put('/users', UserController.update);
+routes.get('/users', UserController.index);
 
 routes.post('/workers', WorkerController.store);
+routes.get('/workers', WorkerController.index);
 routes.post('/tasks', TaskController.store);
 routes.get('/tasks', TaskController.index);
 routes.post('/depts', DeptController.store);

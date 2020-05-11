@@ -19,7 +19,8 @@ class T_EndController {
 
     await Notification.create({
       content: `${task.worker_id} finalizou a tarefa ${task.name}.`,
-      user: task.worker_id,
+      task: task.id,
+      worker: task.worker_id,
     });
 
     return res.json(task);

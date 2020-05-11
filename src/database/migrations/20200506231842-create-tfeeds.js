@@ -22,7 +22,7 @@ module.exports = {
       feed: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
+        unique: false,
       },
       created_at: {
         type: Sequelize.DATE,
