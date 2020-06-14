@@ -1,5 +1,4 @@
 import Sequelize, { Model } from 'sequelize';
-import bcrypt from 'bcryptjs';
 
 class Task extends Model {
   static init(sequelize) {
@@ -21,6 +20,10 @@ class Task extends Model {
 
   static associate(models) {
     this.belongsTo(models.Worker, { foreignKey: 'worker_id', as: 'worker' });
+    this.belongsTo(models.Signature, {
+      foreignKey: 'signature_id',
+      as: 'signature',
+    });
   }
 }
 export default Task;

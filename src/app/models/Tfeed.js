@@ -5,6 +5,7 @@ class Tfeed extends Model {
     super.init(
       {
         feed: Sequelize.STRING(1234),
+        comment: Sequelize.JSON,
         canceled_at: Sequelize.DATE,
       },
       {

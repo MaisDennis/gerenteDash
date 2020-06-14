@@ -3,7 +3,7 @@ import Task from '../models/Task';
 import Worker from '../models/Worker';
 import Notification from '../schemas/Notification';
 
-class T_EndController {
+class T_DetailController {
   async update(req, res) {
     const { id } = req.params; // id: task_id.
     const end_date = new Date();
@@ -11,24 +11,20 @@ class T_EndController {
 
     let task = await Task.findByPk(id);
 
-    task = await task.update({
-      end_date,
-      signature_id,
-    });
+    task = await task.update({});
     // console.log(task.worker_id);
-
-    await Notification.create({
-      content: `${task.worker_id} finalizou a tarefa ${task.name}.`,
-      task: task.id,
-      worker: task.worker_id,
-    });
 
     return res.json(task);
   }
 
   // Filtered List. Pending
   async index(req, res) {
+    const { id } = req.params;
+
     const tasks = await Task.findAll({
+      where: {
+        id,
+      },
       include: [
         {
           model: Worker,
@@ -40,4 +36,4 @@ class T_EndController {
     return res.json(tasks);
   }
 }
-export default new T_EndController();
+export default new T_DetailController();

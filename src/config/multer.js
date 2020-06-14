@@ -1,5 +1,5 @@
-import multer from 'multer';
-import crypto from 'crypto';
+import multer from 'multer'; // multipart form data, multer conversa com esse formato e formato json.
+import crypto from 'crypto'; // da biblioteca node para gerar caracteres random.
 import { extname, resolve } from 'path';
 
 export default {
@@ -8,6 +8,7 @@ export default {
     filename: (req, file, cb) => {
       crypto.randomBytes(16, (err, res) => {
         if (err) return cb(err);
+
         return cb(null, res.toString('hex') + extname(file.originalname));
       });
     },

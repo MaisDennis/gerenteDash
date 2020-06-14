@@ -2,7 +2,7 @@
 
 * [1. Conceitos abordados](#1-conceitos-abordados)
 * [2. Iniciando o projeto](#2-iniciando-o-projeto)
-* [3. Enunciado do desafio](#3-enunciado-do-desafio)
+* [3. Color pallette](#3-color-pallette)
 * [4. Criando o projeto](#4-criando-o-projeto)
 
 ##  1. Conceitos abordados:
@@ -17,13 +17,13 @@
 
 ##  2. Iniciando o projeto
 
-1.  docker start database3
+1.  docker start database5
 2.  yarn dev
 3.  Iniciar Insomnia
-4.  Iniciar Postbird (Port: 5434)
+4.  Iniciar Postbird (Port: 5436)
 
 
- ##  3. Enunciado do desafio
+ ##  3. Color pallette
 
 <h1 align="center">
   <img alt="Fastfeet" title="Fastfeet" src="logo.png" width="300px" />
@@ -155,7 +155,7 @@ Feito com ♥ by Rocketseat :wave: [Entre na nossa comunidade!](https://discorda
       yarn add nodemon -D
       ```
    3. Criar server.js e routes.js
-   
+
 2. Nodemon & Sucrase
    1. Para utilizar a nova sintaxe do JS dentro do NodeJS:
    2. Atualizar package.json, launch.json</br>
@@ -163,7 +163,7 @@ Feito com ♥ by Rocketseat :wave: [Entre na nossa comunidade!](https://discorda
       ```
       yarn add sucrase -D
       ```
-      
+
 3. Conceitos do Docker
    1. Instalar Docker para a criação de containers (para DB, notifications e envio de e-mails).
       1. https://docs.docker.com/install/
@@ -177,13 +177,13 @@ Feito com ♥ by Rocketseat :wave: [Entre na nossa comunidade!](https://discorda
       4. Todos os Containers:    docker ps -a
    3. Download Postbird: https://electronjs.org/apps/postbird
       1. Create Database: Fastfeet
-      
+
 4. Sequelize & MVC
    1. Sequelize: ORM NodeJS para DB's relacionais (MySQL, Postgres, SQLite).
       1. Tabelas viram models.
       2. Migrations: Cada arquivo contém instruções para criação, alteração ou remoção de tabelas ou colunas.
       3. Seeds: População de DB para **desenvolvimento**.
-      
+
 5. ESLint, Prettier & EditorConfig
    1. ESLint: "linting" do código (uso do padrão AirBNB).
       ```
@@ -197,7 +197,7 @@ Feito com ♥ by Rocketseat :wave: [Entre na nossa comunidade!](https://discorda
       yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
       ```
       1. alterar .eslintrc.js, criar .prettierrc e EditorConfig.
-      
+
 6. Configurando Sequelize
    1. Criar src/config/database.js, src/database/migrations, app/controllers, app/models.
       ```
@@ -206,7 +206,7 @@ Feito com ♥ by Rocketseat :wave: [Entre na nossa comunidade!](https://discorda
       yarn add pg pg-hstore
       ```
    2. Criar .sequelizerc e alterar database.js
-   
+
 7. Migration
    1. Criar tabelas, migrate, undo, undo all
       ```
@@ -220,7 +220,7 @@ Feito com ♥ by Rocketseat :wave: [Entre na nossa comunidade!](https://discorda
       yarn sequelize seed:generate --name admin-user
       yarn sequelize db:seed:all
       ```
-      
+
 8. Models
 
 9. Loader de models
@@ -229,14 +229,14 @@ Feito com ♥ by Rocketseat :wave: [Entre na nossa comunidade!](https://discorda
 10. Cadastro de usuários
     1. Criar controllers/UserController.js, alterar routes.js
     2. Insomnia: Criar Workspace: Fastfeet, pasta: Users, Request: POST
- 
+
 11. Gerando Hash de senha
     1. Gerar Hash e criptografar a senha
        ```
        yarn add bcryptjs
        ```
     2. Alterar models/User.js
-    
+
 12. Autenticação JWT
     1. Criar SessionController.js
     2. Instalar o gerador de token JWT.
@@ -252,7 +252,7 @@ Feito com ♥ by Rocketseat :wave: [Entre na nossa comunidade!](https://discorda
     2. Criar método update no UserController.js.
     3. Criar app/middlewares/auth.js.
     4. Criar middleware global em routes.js
-    
+
 14. Update de usuário
 
 15. Validando dados de entrada
@@ -265,4 +265,4 @@ Feito com ♥ by Rocketseat :wave: [Entre na nossa comunidade!](https://discorda
        1. Criar métodos Store e Update.
     4. SessionController.js
        1. Criar método Store.
- 
+
