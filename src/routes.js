@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
 import multerConfig from './config/multer';
-
+// -----------------------------------------------------------------------------
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import WorkerController from './app/controllers/WorkerController';
@@ -16,9 +16,8 @@ import T_DetailController from './app/controllers/T_DetailController';
 import NotificationController from './app/controllers/NotificationController';
 import T_FinishedByWorkerController from './app/controllers/T_FinishedByWorkerController';
 import T_UnfinishedByWorkerController from './app/controllers/T_UnfinishedByWorkerController';
-
 import authMiddleware from './app/middlewares/auth';
-
+// -----------------------------------------------------------------------------
 const routes = new Router();
 const upload = multer(multerConfig);
 
@@ -41,7 +40,6 @@ routes.post(
   upload.single('signature'),
   SignatureController.store
 );
-
 routes.post('/files', upload.single('file'), FileController.store);
 
 // -----------------------------------------------------------------------------
@@ -50,17 +48,10 @@ routes.use(authMiddleware);
 
 routes.put('/users', UserController.update);
 routes.get('/users', UserController.index);
-
 routes.post('/workers', WorkerController.store);
-
 routes.post('/tasks', TaskController.store);
-
 routes.post('/depts', DeptController.store);
 routes.put('/tasks/:id/t_end', T_ConfirmController.update);
 routes.get('/tasks/:id/t_detail', T_DetailController.index);
-
-// routes.post('/files', upload.single('file'), (req, res) => {
-//   return res.json({ ok: true });
-// });
 
 export default routes;
