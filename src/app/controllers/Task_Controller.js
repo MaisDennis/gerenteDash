@@ -3,8 +3,8 @@ import { Op } from 'sequelize';
 import Task from '../models/Task';
 import Worker from '../models/Worker';
 import File from '../models/File';
-
-class TaskController {
+// -----------------------------------------------------------------------------
+class Task_Controller {
   async store(req, res) {
     const { worker_id, name, description, start_date, due_date } = req.body;
 
@@ -22,18 +22,20 @@ class TaskController {
     return res.json(task);
   }
 
+  // ---------------------------------------------------------------------------
   async index(req, res) {
-    const { test } = req.query;
+    const { test, test2 } = req.query;
     const tasks = await Task.findAll({
       include: [
         {
           model: Worker,
           as: 'worker',
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'dept'],
           where: {
             name: {
               [Op.like]: `%${test}%`,
             },
+            user_id: test2,
           },
           include: [
             {
@@ -48,4 +50,4 @@ class TaskController {
     return res.json(tasks);
   }
 }
-export default new TaskController();
+export default new Task_Controller();

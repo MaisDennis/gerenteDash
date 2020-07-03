@@ -4,12 +4,11 @@ import User from '../app/models/User';
 import Worker from '../app/models/Worker';
 import File from '../app/models/File';
 import Task from '../app/models/Task';
-import Dept from '../app/models/Dept';
-import Tfeed from '../app/models/Tfeed';
+import TaskFeed from '../app/models/TaskFeed';
 import Signature from '../app/models/Signature';
 import databaseConfig from '../config/database';
 
-const models = [User, Worker, File, Task, Dept, Tfeed, Signature];
+const models = [User, Worker, File, Task, TaskFeed, Signature];
 
 class Database {
   constructor() {

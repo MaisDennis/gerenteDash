@@ -1,14 +1,13 @@
-// import * as Yup from 'yup';
 import { Op } from 'sequelize';
 import Task from '../models/Task';
 import Worker from '../models/Worker';
 import File from '../models/File';
-
-class T_FinishedByWorkerController {
+// -----------------------------------------------------------------------------
+class TaskUnfinishedByWorkerController {
   async index(req, res) {
     const { test } = req.query;
     const tasks = await Task.findAll({
-      where: { end_date: { [Op.ne]: null } },
+      where: { end_date: null },
       include: [
         {
           model: Worker,
@@ -33,4 +32,4 @@ class T_FinishedByWorkerController {
   }
 }
 
-export default new T_FinishedByWorkerController();
+export default new TaskUnfinishedByWorkerController();

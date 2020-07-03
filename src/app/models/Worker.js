@@ -5,7 +5,7 @@ class Worker extends Model {
     super.init(
       {
         name: Sequelize.STRING,
-        nickname: Sequelize.STRING,
+        dept: Sequelize.STRING,
         cpf: Sequelize.STRING,
       },
       {
@@ -17,6 +17,7 @@ class Worker extends Model {
 
   static associate(models) {
     this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
+    this.belongsTo(models.File, { foreignKey: 'user_id', as: 'user' });
   }
 }
 

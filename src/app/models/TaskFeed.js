@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Tfeed extends Model {
+class TaskFeed extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -21,4 +21,4 @@ class Tfeed extends Model {
     this.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
   }
 }
-export default Tfeed;
+export default TaskFeed;

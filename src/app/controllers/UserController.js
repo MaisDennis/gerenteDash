@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import User from '../models/User';
 import File from '../models/File';
-
+// -----------------------------------------------------------------------------
 class UserController {
   async store(req, res) {
     const schema = Yup.object().shape({
@@ -36,6 +36,7 @@ class UserController {
     });
   }
 
+  // ---------------------------------------------------------------------------
   async update(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string(),
@@ -57,7 +58,15 @@ class UserController {
 
     const { email, oldPassword } = req.body;
 
-    const user = await User.findByPk(req.userId);
+    // const user = await User.findByPk(req.userId);
+    // // $$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    // console.log(req.userId);
+
+    const user = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
 
     if (email !== user.email) {
       const userExists = await User.findOne({ where: { email } });
@@ -88,6 +97,7 @@ class UserController {
     return res.json({ id, name, email, avatar });
   }
 
+  // ---------------------------------------------------------------------------
   async index(req, res) {
     const users = await User.findAll({});
 

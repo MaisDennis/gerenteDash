@@ -1,6 +1,5 @@
-// import User from '../models/User';
 import Notification from '../schemas/Notification';
-
+// -----------------------------------------------------------------------------
 class NotificationController {
   async index(req, res) {
     const notifications = await Notification.find({})
@@ -9,6 +8,7 @@ class NotificationController {
     return res.json(notifications);
   }
 
+  // ---------------------------------------------------------------------------
   async update(req, res) {
     // const notification = await Notification.findById(req.params.id);
     const notification = await Notification.findByIdAndUpdate(

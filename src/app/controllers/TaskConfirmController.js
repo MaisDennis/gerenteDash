@@ -2,8 +2,8 @@
 import Task from '../models/Task';
 import Worker from '../models/Worker';
 import Notification from '../schemas/Notification';
-
-class T_ConfirmController {
+// -----------------------------------------------------------------------------
+class TaskConfirmController {
   async update(req, res) {
     const { id } = req.params; // id: task_id.
     const end_date = new Date();
@@ -15,7 +15,6 @@ class T_ConfirmController {
       end_date,
       signature_id,
     });
-    // console.log(task.worker_id);
 
     await Notification.create({
       content: `${task.worker_id} finalizou a tarefa ${task.name}.`,
@@ -26,6 +25,7 @@ class T_ConfirmController {
     return res.json(task);
   }
 
+  // ---------------------------------------------------------------------------
   // Filtered List. Pending
   async index(req, res) {
     const tasks = await Task.findAll({
@@ -40,4 +40,4 @@ class T_ConfirmController {
     return res.json(tasks);
   }
 }
-export default new T_ConfirmController();
+export default new TaskConfirmController();

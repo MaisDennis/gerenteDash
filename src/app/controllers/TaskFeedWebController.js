@@ -1,23 +1,18 @@
-// import * as Yup from 'yup';
-import { Op } from 'sequelize';
-import Task from '../models/Task';
 import Worker from '../models/Worker';
+import TaskFeed from '../models/TaskFeed';
 import File from '../models/File';
-
-class T_UnfinishedByWorkerController {
+// -----------------------------------------------------------------------------
+class TaskFeedWebController {
   async index(req, res) {
     const { test } = req.query;
-    const tasks = await Task.findAll({
-      where: { end_date: null },
+    const taskFeeds = await TaskFeed.findAll({
       include: [
         {
           model: Worker,
           as: 'worker',
           attributes: ['id', 'name'],
           where: {
-            name: {
-              [Op.like]: `%${test}%`,
-            },
+            user_id: test,
           },
           include: [
             {
@@ -29,8 +24,8 @@ class T_UnfinishedByWorkerController {
         },
       ],
     });
-    return res.json(tasks);
+
+    return res.json(taskFeeds);
   }
 }
-
-export default new T_UnfinishedByWorkerController();
+export default new TaskFeedWebController();
