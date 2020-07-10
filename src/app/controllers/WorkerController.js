@@ -1,4 +1,6 @@
 import * as Yup from 'yup';
+import { Op } from 'sequelize';
+// -----------------------------------------------------------------------------
 import Worker from '../models/Worker';
 import File from '../models/File';
 // -----------------------------------------------------------------------------
@@ -55,7 +57,9 @@ class WorkerController {
     const workers = await Worker.findAll({
       attributes: ['id', 'name', 'cpf', 'dept', 'avatar_id'],
       where: {
-        user_id: test,
+        name: {
+          [Op.like]: `%${test}%`,
+        },
       },
       include: [
         {
