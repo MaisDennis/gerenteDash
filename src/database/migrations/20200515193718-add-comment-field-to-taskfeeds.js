@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.addColumn('tfeeds', 'comment', {
+    return queryInterface.addColumn('taskfeeds', 'comment', {
       type: Sequelize.JSON,
       onUpdate: 'CASCADE',
       onDelete: 'SET NULL',
@@ -8,6 +8,6 @@ module.exports = {
     });
   },
   down: queryInterface => {
-    return queryInterface.removeColumn('tfeeds', 'comment');
+    return queryInterface.removeColumn('taskfeeds', 'comment');
   },
 };
