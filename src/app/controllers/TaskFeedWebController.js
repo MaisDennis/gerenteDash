@@ -1,5 +1,5 @@
 import Worker from '../models/Worker';
-import TaskFeed from '../models/TaskFeed';
+import TaskFeed from '../models/Taskfeed';
 import File from '../models/File';
 // -----------------------------------------------------------------------------
 class TaskFeedWebController {

@@ -23,19 +23,23 @@ const upload = multer(multerConfig);
 
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
+routes.get('/workers', WorkerController.index);
 routes.put('/workers/:id', WorkerController.update);
-routes.post('/tasks/:id/tfeed', TaskFeedMobileController.store);
-routes.get('/tasks/tfeed', TaskFeedMobileController.index);
-routes.get('/tasks/taskFeedWeb', TaskFeedWebController.index);
-// routes.put('/tasks/:id/tfeed/comment', T_FeedController.update);
+routes.get('/workers/mobile', WorkerMobileController.index);
+
 routes.get('/tasks', TaskController.index);
 routes.get('/tasks/finished', TaskFinishedByWorkerController.index);
 routes.get('/tasks/unfinished', TaskUnfinishedByWorkerController.index);
+
+routes.get('/tasks/taskFeedWeb', TaskFeedWebController.index);
+routes.post('/tasks/:id/tfeed', TaskFeedMobileController.store);
+routes.get('/tasks/tfeed', TaskFeedMobileController.index);
+
+// routes.put('/tasks/:id/tfeed/comment', T_FeedController.update);
+
 routes.get('/notifications', NotificationController.index);
 routes.put('/notifications/:id', NotificationController.update);
 routes.get('/signatures', SignatureController.index);
-routes.get('/workers', WorkerController.index);
-routes.get('/workers/mobile', WorkerMobileController.index);
 
 routes.post(
   '/signatures',
@@ -51,6 +55,7 @@ routes.use(authMiddleware);
 routes.put('/users', UserController.update);
 routes.get('/users', UserController.index);
 routes.post('/workers', WorkerController.store);
+
 routes.post('/tasks', TaskController.store);
 routes.put('/tasks/:id/t_end', TaskConfirmController.update);
 routes.get('/tasks/:id/t_detail', TaskDetailController.index);

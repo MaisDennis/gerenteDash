@@ -1,4 +1,4 @@
-import TaskFeed from '../models/TaskFeed';
+import TaskFeed from '../models/Taskfeed';
 import Notification from '../schemas/Notification';
 // -----------------------------------------------------------------------------
 class TaskFeedMobileController {
