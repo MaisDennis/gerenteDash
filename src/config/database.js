@@ -6,12 +6,17 @@ module.exports = {
   // username: 'postgres',
   // password: 'docker',
   // database: 'postgres',
-
   dialect: 'postgres',
-  host: process.env.DB_HOST,
-  username: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
+  host: 'localhost',
+  username: 'postgres',
+  password: 'gerenteDashdeploy',
+  database: 'postgres',
+
+  // dialect: 'postgres',
+  // host: process.env.DB_HOST,
+  // username: process.env.DB_USER,
+  // password: process.env.DB_PASS,
+  // database: process.env.DB_NAME,
   port: 5432, // adicionar a porta se não estiver rodando a padrão 5432
   define: {
     timestamps: true, // saber quando registro foi criado/editado
