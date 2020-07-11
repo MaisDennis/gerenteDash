@@ -4,7 +4,7 @@ import File from '../models/File';
 // -----------------------------------------------------------------------------
 class TaskFeedWebController {
   async index(req, res) {
-    const { test } = req.query;
+    const { taskID } = req.query;
     const taskFeeds = await TaskFeed.findAll({
       include: [
         {
@@ -12,7 +12,7 @@ class TaskFeedWebController {
           as: 'worker',
           attributes: ['id', 'name'],
           where: {
-            user_id: test,
+            user_id: taskID,
           },
           include: [
             {

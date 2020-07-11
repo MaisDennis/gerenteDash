@@ -24,7 +24,7 @@ class Task_Controller {
 
   // ---------------------------------------------------------------------------
   async index(req, res) {
-    const { test, test2 } = req.query;
+    const { workerNameFilter, userID } = req.query;
     const tasks = await Task.findAll({
       include: [
         {
@@ -33,9 +33,9 @@ class Task_Controller {
           attributes: ['id', 'name', 'dept'],
           where: {
             name: {
-              [Op.like]: `%${test}%`,
+              [Op.like]: `%${workerNameFilter}%`,
             },
-            user_id: test2,
+            user_id: userID,
           },
           include: [
             {

@@ -13,7 +13,6 @@ class WorkerController {
         .required()
         .min(11),
     });
-
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Create failed' });
     }
@@ -21,7 +20,6 @@ class WorkerController {
     const workerExists = await Worker.findOne({
       where: { name: req.body.name },
     });
-
     if (workerExists) {
       return res
         .status(400)
@@ -29,7 +27,6 @@ class WorkerController {
     }
 
     const { name, dept, cpf, user_id } = req.body;
-    // const user_id =
 
     const worker = await Worker.create({
       name,
@@ -53,13 +50,16 @@ class WorkerController {
 
   // ---------------------------------------------------------------------------
   async index(req, res) {
-    const { test } = req.query;
+    const { nameFilter, userID } = req.query;
+    // $$$$$$$$$$$$$$$$
+    console.log({ nameFilter, userID });
     const workers = await Worker.findAll({
-      attributes: ['id', 'name', 'cpf', 'dept', 'avatar_id'],
+      attributes: ['id', 'name', 'cpf', 'dept', 'avatar_id', 'user_id'],
       where: {
         name: {
-          [Op.like]: `%${test}%`,
+          [Op.like]: `%${nameFilter}%`,
         },
+        user_id: userID,
       },
       include: [
         {
