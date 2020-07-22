@@ -51,8 +51,6 @@ class WorkerController {
   // ---------------------------------------------------------------------------
   async index(req, res) {
     const { nameFilter, userID } = req.query;
-    // $$$$$$$$$$$$$$$$
-    console.log({ nameFilter, userID });
     const workers = await Worker.findAll({
       attributes: ['id', 'name', 'cpf', 'dept', 'avatar_id', 'user_id'],
       where: {

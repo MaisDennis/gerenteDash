@@ -30,6 +30,7 @@ routes.get('/workers/mobile', WorkerMobileController.index);
 routes.get('/tasks', TaskController.index);
 routes.get('/tasks/finished', TaskFinishedByWorkerController.index);
 routes.get('/tasks/unfinished', TaskUnfinishedByWorkerController.index);
+routes.put('/tasks/:id/t_end', TaskConfirmController.update);
 
 routes.get('/tasks/taskFeedWeb', TaskFeedWebController.index);
 routes.post('/tasks/:id/tfeed', TaskFeedMobileController.store);
@@ -57,7 +58,7 @@ routes.get('/users', UserController.index);
 routes.post('/workers', WorkerController.store);
 
 routes.post('/tasks', TaskController.store);
-routes.put('/tasks/:id/t_end', TaskConfirmController.update);
+
 routes.get('/tasks/:id/t_detail', TaskDetailController.index);
 
 export default routes;
