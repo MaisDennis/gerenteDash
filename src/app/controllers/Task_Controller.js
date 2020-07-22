@@ -1,4 +1,4 @@
-import { startOfHour, parseISO, isBefore } from 'date-fns';
+import { startOfHour, parseISO, isBefore, subDays } from 'date-fns';
 import { Op } from 'sequelize';
 import Task from '../models/Task';
 import Worker from '../models/Worker';
@@ -9,9 +9,10 @@ class Task_Controller {
     const { worker_id, name, description, start_date, due_date } = req.body;
 
     const hourStart = startOfHour(parseISO(start_date));
-    if (isBefore(hourStart, new Date())) {
+    if (isBefore(hourStart, subDays(new Date(), 1))) {
       return res.status(400).json({ error: 'Past dates are not permitted' });
     }
+
     const task = await Task.create({
       worker_id,
       name,
