@@ -9,7 +9,7 @@ class WorkerController {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
       dept: Yup.string(),
-      cpf: Yup.string()
+      phonenumber: Yup.string()
         .required()
         .min(11),
     });
@@ -26,12 +26,12 @@ class WorkerController {
         .json({ error: 'Create failed: Worker already exists.' });
     }
 
-    const { name, dept, cpf, user_id } = req.body;
+    const { name, dept, phonenumber, user_id } = req.body;
 
     const worker = await Worker.create({
       name,
       dept,
-      cpf,
+      phonenumber,
       user_id,
     });
     return res.json(worker);
@@ -52,7 +52,7 @@ class WorkerController {
   async index(req, res) {
     const { nameFilter, userID } = req.query;
     const workers = await Worker.findAll({
-      attributes: ['id', 'name', 'cpf', 'dept', 'avatar_id', 'user_id'],
+      attributes: ['id', 'name', 'phonenumber', 'dept', 'avatar_id', 'user_id'],
       where: {
         name: {
           [Op.like]: `%${nameFilter}%`,

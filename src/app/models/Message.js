@@ -1,11 +1,12 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Taskfeed extends Model {
+class Message extends Model {
   static init(sequelize) {
     super.init(
       {
-        feed: Sequelize.STRING(1234),
-        comment: Sequelize.JSON,
+        worker_name: Sequelize.STRING,
+        message_worker: Sequelize.STRING(1234),
+        message_user: Sequelize.STRING(1234),
         canceled_at: Sequelize.DATE,
       },
       {
@@ -21,4 +22,4 @@ class Taskfeed extends Model {
     this.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
   }
 }
-export default Taskfeed;
+export default Message;

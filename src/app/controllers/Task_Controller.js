@@ -6,7 +6,10 @@ import File from '../models/File';
 // -----------------------------------------------------------------------------
 class Task_Controller {
   async store(req, res) {
-    const { worker_id, name, description, start_date, due_date } = req.body;
+    const [
+      { worker_id, name, description, start_date, due_date },
+      user_id,
+    ] = req.body;
 
     const hourStart = startOfHour(parseISO(start_date));
     if (isBefore(hourStart, subDays(new Date(), 1))) {
@@ -14,6 +17,7 @@ class Task_Controller {
     }
 
     const task = await Task.create({
+      user_id,
       worker_id,
       name,
       description,

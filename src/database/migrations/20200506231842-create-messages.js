@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('taskfeeds', {
+    return queryInterface.createTable('messages', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -9,19 +9,28 @@ module.exports = {
       },
       task_id: {
         type: Sequelize.INTEGER,
-        allowNull: true,
+        allowNull: false,
       },
       worker_id: {
         type: Sequelize.INTEGER,
-        allowNull: true,
+        allowNull: false,
+      },
+      worker_name: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       user_id: {
         type: Sequelize.INTEGER,
-        allowNull: true,
-      },
-      feed: {
-        type: Sequelize.STRING,
         allowNull: false,
+      },
+      message_worker: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        unique: false,
+      },
+      message_user: {
+        type: Sequelize.STRING,
+        allowNull: true,
         unique: false,
       },
       created_at: {
@@ -40,6 +49,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('taskfeeds');
+    return queryInterface.dropTable('messages');
   },
 };

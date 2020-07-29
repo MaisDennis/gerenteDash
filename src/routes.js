@@ -9,8 +9,9 @@ import TaskController from './app/controllers/Task_Controller';
 import FileController from './app/controllers/FileController';
 import SignatureController from './app/controllers/SignatureController';
 import TaskConfirmController from './app/controllers/TaskConfirmController';
-import TaskFeedMobileController from './app/controllers/TaskFeedMobileController';
-import TaskFeedWebController from './app/controllers/TaskFeedWebController';
+import MessageMobileController from './app/controllers/MessageMobileController';
+import MessageWebPerTaskController from './app/controllers/MessageWebPerTaskController';
+import MessageWebController from './app/controllers/MessageWebController';
 import TaskDetailController from './app/controllers/TaskDetailController';
 import NotificationController from './app/controllers/NotificationController';
 import TaskFinishedByWorkerController from './app/controllers/TaskFinishedByWorkerController';
@@ -30,11 +31,12 @@ routes.get('/workers/mobile', WorkerMobileController.index);
 routes.get('/tasks', TaskController.index);
 routes.get('/tasks/finished', TaskFinishedByWorkerController.index);
 routes.get('/tasks/unfinished', TaskUnfinishedByWorkerController.index);
-routes.put('/tasks/:id/t_end', TaskConfirmController.update);
+routes.put('/tasks/confirm/:id', TaskConfirmController.update);
 
-routes.get('/tasks/taskFeedWeb', TaskFeedWebController.index);
-routes.post('/tasks/:id/tfeed', TaskFeedMobileController.store);
-routes.get('/tasks/tfeed', TaskFeedMobileController.index);
+routes.get('/messages/web', MessageWebController.index);
+routes.get('/messages/web/task', MessageWebPerTaskController.index);
+routes.post('/messages/mobile/:id', MessageMobileController.store);
+// routes.get('/messages/tfeed', TaskFeedMobileController.index);
 
 // routes.put('/tasks/:id/tfeed/comment', T_FeedController.update);
 

@@ -1,14 +1,14 @@
 import Worker from '../models/Worker';
-import TaskFeed from '../models/Taskfeed';
+import Message from '../models/Message';
 import File from '../models/File';
 // -----------------------------------------------------------------------------
-class TaskFeedWebController {
+class MessageWebController {
   async index(req, res) {
-    const { taskID } = req.query;
+    const { userID } = req.query;
 
-    const taskFeeds = await TaskFeed.findAll({
+    const messages = await Message.findAll({
       where: {
-        task_id: taskID,
+        user_id: userID,
       },
       include: [
         {
@@ -25,9 +25,7 @@ class TaskFeedWebController {
         },
       ],
     });
-    // %%%%%
-    console.log(taskFeeds);
-    return res.json(taskFeeds);
+    return res.json(messages);
   }
 }
-export default new TaskFeedWebController();
+export default new MessageWebController();

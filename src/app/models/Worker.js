@@ -6,7 +6,7 @@ class Worker extends Model {
       {
         name: Sequelize.STRING,
         dept: Sequelize.STRING,
-        cpf: Sequelize.STRING,
+        phonenumber: Sequelize.STRING,
       },
       {
         sequelize,

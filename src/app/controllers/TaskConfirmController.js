@@ -16,8 +16,10 @@ class TaskConfirmController {
       signature_id,
     });
 
+    const worker = await Worker.findByPk(task.worker_id);
+
     await Notification.create({
-      content: `${task.worker_id} finalizou a tarefa ${task.name}.`,
+      content: `${worker.name} finalizou a tarefa ${task.name}.`,
       task: task.id,
       worker: task.worker_id,
     });
