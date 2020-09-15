@@ -4,7 +4,17 @@ import File from '../models/File';
 class WorkerMobileController {
   async index(req, res) {
     const workers = await Worker.findAll({
-      attributes: ['id', 'name', 'phonenumber', 'dept', 'avatar_id'],
+      attributes: [
+        'id',
+        'name',
+        'dept',
+        'phonenumber',
+        'phonenumber_lastfourdigits',
+        'gender',
+        'worker_password',
+        'avatar_id',
+        'user_id',
+      ],
       include: [
         {
           model: File,

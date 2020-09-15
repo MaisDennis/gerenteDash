@@ -6,6 +6,7 @@ class Task extends Model {
       {
         name: Sequelize.STRING,
         description: Sequelize.STRING(1234),
+        score: Sequelize.INTEGER,
         start_date: Sequelize.DATE,
         due_date: Sequelize.DATE,
         end_date: Sequelize.DATE,
@@ -20,7 +21,13 @@ class Task extends Model {
 
   static associate(models) {
     this.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
+    this.belongsTo(models.User, {
+      foreignKey: 'userphonenumber',
+    });
     this.belongsTo(models.Worker, { foreignKey: 'worker_id', as: 'worker' });
+    this.belongsTo(models.Worker, {
+      foreignKey: 'workerphonenumber',
+    });
     this.belongsTo(models.Signature, {
       foreignKey: 'signature_id',
       as: 'signature',

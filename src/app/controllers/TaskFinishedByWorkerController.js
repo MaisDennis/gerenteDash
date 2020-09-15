@@ -8,6 +8,7 @@ class TaskFinishedByWorkerController {
     const { test } = req.query;
     const tasks = await Task.findAll({
       where: { end_date: { [Op.ne]: null } },
+      order: ['end_date'],
       include: [
         {
           model: Worker,

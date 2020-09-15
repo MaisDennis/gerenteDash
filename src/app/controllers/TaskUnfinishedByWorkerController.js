@@ -8,6 +8,7 @@ class TaskUnfinishedByWorkerController {
     const { test } = req.query;
     const tasks = await Task.findAll({
       where: { end_date: null },
+      order: ['due_date'],
       include: [
         {
           model: Worker,

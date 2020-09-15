@@ -12,6 +12,8 @@ class UserController {
       password: Yup.string()
         .required()
         .min(6),
+      phonenumber: Yup.string().required(),
+      gender: Yup.string(),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -26,13 +28,22 @@ class UserController {
         .json({ error: 'Create failed: User already exists.' });
     }
 
-    const { id, name, email, provider } = await User.create(req.body);
+    const {
+      id,
+      name,
+      email,
+      provider,
+      phonenumber,
+      gender,
+    } = await User.create(req.body);
 
     return res.json({
       id,
       name,
       email,
       provider,
+      phonenumber,
+      gender,
     });
   }
 

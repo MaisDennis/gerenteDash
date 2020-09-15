@@ -12,6 +12,10 @@ class WorkerController {
       phonenumber: Yup.string()
         .required()
         .min(11),
+      worker_password: Yup.string()
+        .required()
+        .min(1),
+      gender: Yup.string(),
     });
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Create failed' });
@@ -26,12 +30,24 @@ class WorkerController {
         .json({ error: 'Create failed: Worker already exists.' });
     }
 
-    const { name, dept, phonenumber, user_id } = req.body;
+    const {
+      name,
+      dept,
+      phonenumber,
+      worker_password,
+      gender,
+      user_id,
+    } = req.body;
+
+    const lastFourDigits = phonenumber.slice(-4);
 
     const worker = await Worker.create({
       name,
       dept,
       phonenumber,
+      phonenumber_lastfourdigits: lastFourDigits,
+      worker_password,
+      gender,
       user_id,
     });
     return res.json(worker);
@@ -40,10 +56,29 @@ class WorkerController {
   // ---------------------------------------------------------------------------
   async update(req, res) {
     const { id } = req.params;
+    const {
+      name,
+      dept,
+      phonenumber,
+      worker_password,
+      gender,
+      canceled_at,
+    } = req.body;
+    // const canceled_at = new Date();
+
+    const lastFourDigits = phonenumber.slice(-4);
 
     let worker = await Worker.findByPk(id);
 
-    worker = await worker.update(req.body);
+    worker = await worker.update({
+      name,
+      dept,
+      phonenumber,
+      phonenumber_lastfourdigits: lastFourDigits,
+      worker_password,
+      gender,
+      canceled_at,
+    });
 
     return res.json(worker);
   }
@@ -52,7 +87,16 @@ class WorkerController {
   async index(req, res) {
     const { nameFilter, userID } = req.query;
     const workers = await Worker.findAll({
-      attributes: ['id', 'name', 'phonenumber', 'dept', 'avatar_id', 'user_id'],
+      attributes: [
+        'id',
+        'name',
+        'dept',
+        'phonenumber',
+        'worker_password',
+        'gender',
+        'avatar_id',
+        'user_id',
+      ],
       where: {
         name: {
           [Op.like]: `%${nameFilter}%`,

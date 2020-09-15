@@ -60,7 +60,9 @@ routes.get('/users', UserController.index);
 routes.post('/workers', WorkerController.store);
 
 routes.post('/tasks', TaskController.store);
+routes.put('/tasks/:id', TaskController.update);
 
 routes.get('/tasks/:id/t_detail', TaskDetailController.index);
+routes.put('/tasks/:id/t_detail', TaskDetailController.update);
 
 export default routes;

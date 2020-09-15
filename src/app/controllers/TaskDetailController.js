@@ -6,9 +6,11 @@ import File from '../models/File';
 class TaskDetailController {
   async update(req, res) {
     const { id } = req.params; // id: task_id.
-
+    const { score } = req.body;
     let task = await Task.findByPk(id);
-    task = await task.update({});
+    task = await task.update({
+      score,
+    });
 
     return res.json(task);
   }

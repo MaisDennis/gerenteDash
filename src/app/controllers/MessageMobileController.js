@@ -14,7 +14,6 @@ class MessageMobileController {
       },
     });
     const worker_name = worker[0].name;
-    console.log(req.body);
 
     const message = await Message.create({
       task_id,

@@ -7,6 +7,10 @@ class Worker extends Model {
         name: Sequelize.STRING,
         dept: Sequelize.STRING,
         phonenumber: Sequelize.STRING,
+        phonenumber_lastfourdigits: Sequelize.STRING,
+        worker_password: Sequelize.STRING,
+        gender: Sequelize.STRING,
+        canceled_at: Sequelize.DATE,
       },
       {
         sequelize,

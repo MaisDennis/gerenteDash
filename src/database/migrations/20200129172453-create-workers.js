@@ -20,6 +20,18 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      phonenumber_lastfourdigits: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      gender: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      worker_password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -27,6 +39,10 @@ module.exports = {
       updated_at: {
         type: Sequelize.DATE,
         allowNull: false,
+      },
+      canceled_at: {
+        type: Sequelize.DATE,
+        allowNull: true,
       },
     });
   },

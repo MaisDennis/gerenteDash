@@ -10,6 +10,9 @@ class User extends Model {
         password: Sequelize.VIRTUAL, // campo que nunca existe na database
         password_hash: Sequelize.STRING,
         provider: Sequelize.BOOLEAN,
+        phonenumber: Sequelize.STRING,
+        gender: Sequelize.STRING,
+        canceled_at: Sequelize.DATE,
       },
       {
         sequelize,

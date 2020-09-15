@@ -33,6 +33,18 @@ module.exports = {
         onDelete: 'SET NULL',
         allowNull: true,
       },
+      score: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
+      userphonenumber: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      workerphonenumber: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       start_date: {
         type: Sequelize.DATE,
         allowNull: false,
