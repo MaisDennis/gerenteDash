@@ -1,12 +1,12 @@
 import { Router } from 'express';
 import multer from 'multer';
+import multerS3 from 'multer-s3';
 import multerConfig from './config/multer';
 // -----------------------------------------------------------------------------
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import WorkerController from './app/controllers/WorkerController';
 import TaskController from './app/controllers/Task_Controller';
-import FileController from './app/controllers/FileController';
 import SignatureController from './app/controllers/SignatureController';
 import TaskConfirmController from './app/controllers/TaskConfirmController';
 import MessageMobileController from './app/controllers/MessageMobileController';
@@ -17,7 +17,13 @@ import NotificationController from './app/controllers/NotificationController';
 import TaskFinishedByWorkerController from './app/controllers/TaskFinishedByWorkerController';
 import TaskUnfinishedByWorkerController from './app/controllers/TaskUnfinishedByWorkerController';
 import WorkerMobileController from './app/controllers/WorkerMobileController';
+
+import FileController from './app/controllers/FileController';
 import authMiddleware from './app/middlewares/auth';
+import File from './app/models/File';
+import Signature from './app/models/Signature';
+import profileImgUpload from './app/middlewares/profile';
+import signatureImgUpload from './app/middlewares/signature';
 // -----------------------------------------------------------------------------
 const routes = new Router();
 const upload = multer(multerConfig);
@@ -44,12 +50,84 @@ routes.get('/notifications', NotificationController.index);
 routes.put('/notifications/:id', NotificationController.update);
 routes.get('/signatures', SignatureController.index);
 
+routes.get('/files', FileController.index);
+
 routes.post(
   '/signatures',
   upload.single('signature'),
   SignatureController.store
 );
-routes.post('/files', upload.single('file'), FileController.store);
+
+routes.post('/signatures', (req, res) => {
+  signatureImgUpload(req, res, error => {
+    // console.log(req);
+    // console.log('requestOkokok', req.file);
+    // console.log('error', error);
+    if (error) {
+      // console.log('errors', error);
+      res.json({ error });
+    } else {
+      // If File not found
+      if (req.file === undefined) {
+        // console.log('Error: No File Selected!');
+        res.json('Error: No File Selected');
+      }
+      // If Success
+      const imageName = req.file.key;
+      const imageLocation = req.file.location;
+      File.create({
+        name: imageName,
+        path: imageLocation,
+      });
+      const signature = Signature.findOne({
+        where: {
+          path: imageLocation,
+        },
+      });
+      // Save the file name into database into profile model
+      res.json({
+        image: imageName,
+        location: imageLocation,
+      });
+    }
+  });
+}); // End of single profile upload
+
+// routes.post('/files', upload.single('file'), FileController.store);
+routes.post('/files', (req, res) => {
+  profileImgUpload(req, res, error => {
+    // console.log(req);
+    // console.log('requestOkokok', req.file);
+    // console.log('error', error);
+    if (error) {
+      // console.log('errors', error);
+      res.json({ error });
+    } else {
+      // If File not found
+      if (req.file === undefined) {
+        // console.log('Error: No File Selected!');
+        res.json('Error: No File Selected');
+      }
+      // If Success
+      const imageName = req.file.key;
+      const imageLocation = req.file.location;
+      File.create({
+        name: imageName,
+        path: imageLocation,
+      });
+      const file = File.findOne({
+        where: {
+          path: imageLocation,
+        },
+      });
+      // Save the file name into database into profile model
+      res.json({
+        image: imageName,
+        location: imageLocation,
+      });
+    }
+  });
+}); // End of single profile upload
 
 // -----------------------------------------------------------------------------
 routes.use(authMiddleware);

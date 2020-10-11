@@ -104,7 +104,7 @@ class UserController {
         },
       ],
     });
-
+    console.log(req.body);
     return res.json({ id, name, email, avatar });
   }
 
