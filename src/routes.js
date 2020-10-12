@@ -1,7 +1,5 @@
 import { Router } from 'express';
 import multer from 'multer';
-import multerS3 from 'multer-s3';
-import multerConfig from './config/multer';
 // -----------------------------------------------------------------------------
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
@@ -26,7 +24,7 @@ import profileImgUpload from './app/middlewares/profile';
 import signatureImgUpload from './app/middlewares/signature';
 // -----------------------------------------------------------------------------
 const routes = new Router();
-const upload = multer(multerConfig);
+// const upload = multer(multerConfig);
 
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
@@ -52,14 +50,13 @@ routes.get('/signatures', SignatureController.index);
 
 routes.get('/files', FileController.index);
 
-routes.post(
-  '/signatures',
-  upload.single('signature'),
-  SignatureController.store
-);
-
+// routes.post(
+//   '/signatures',
+//   upload.single('signature'),
+//   SignatureController.store
+// );
 routes.post('/signatures', (req, res) => {
-  signatureImgUpload(req, res, error => {
+  signatureImgUpload(req, res, async error => {
     // console.log(req);
     // console.log('requestOkokok', req.file);
     // console.log('error', error);
@@ -73,21 +70,22 @@ routes.post('/signatures', (req, res) => {
         res.json('Error: No File Selected');
       }
       // If Success
-      const imageName = req.file.key;
-      const imageLocation = req.file.location;
-      File.create({
-        name: imageName,
-        path: imageLocation,
+      const name = req.file.key;
+      const path = req.file.location;
+      await Signature.create({
+        name,
+        path,
       });
-      const signature = Signature.findOne({
+      const signature = await Signature.findOne({
         where: {
-          path: imageLocation,
+          name,
         },
       });
       // Save the file name into database into profile model
       res.json({
-        image: imageName,
-        location: imageLocation,
+        image: name,
+        location: path,
+        signature_id: signature.id,
       });
     }
   });
@@ -114,11 +112,6 @@ routes.post('/files', (req, res) => {
       File.create({
         name: imageName,
         path: imageLocation,
-      });
-      const file = File.findOne({
-        where: {
-          path: imageLocation,
-        },
       });
       // Save the file name into database into profile model
       res.json({

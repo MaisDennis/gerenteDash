@@ -1,5 +1,4 @@
 // import { profileImgUpload } from '../middlewares/profile';
-import express from 'express';
 import aws from 'aws-sdk';
 import multerS3 from 'multer-s3';
 import multer from 'multer';

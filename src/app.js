@@ -23,10 +23,10 @@ class App {
     //   express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
     // );
 
-    this.server.use(
-      '/signatures',
-      express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
-    ); // link to signature pic.
+    // this.server.use(
+    //   '/signatures',
+    //   express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
+    // ); // link to signature pic.
     // this.server.use(
     //   '/tasks/:id',
     //   express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
