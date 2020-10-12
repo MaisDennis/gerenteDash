@@ -12,7 +12,12 @@ class SignatureController {
 
   // ---------------------------------------------------------------------------
   async index(req, res) {
-    const signatures = await Signature.findAll();
+    const { image } = req.query;
+    const signatures = await Signature.findOne({
+      where: {
+        name: image,
+      },
+    });
     return res.json(signatures);
   }
 }

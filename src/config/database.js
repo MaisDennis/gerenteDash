@@ -2,20 +2,20 @@
 
 module.exports = {
   // development----------------------------------------------------------------
-  // dialect: 'postgres',
-  // host: 'localhost',
-  // username: 'postgres',
-  // password: 'docker',
-  // database: 'postgres',
-  // port: 5436,
-
-  // production-----------------------------------------------------------------
   dialect: 'postgres',
   host: 'localhost',
   username: 'postgres',
-  password: 'gerenteDashdeploy',
+  password: 'docker',
   database: 'postgres',
-  port: 5432,
+  port: 5436,
+
+  // production-----------------------------------------------------------------
+  // dialect: 'postgres',
+  // host: 'localhost',
+  // username: 'postgres',
+  // password: 'gerenteDashdeploy',
+  // database: 'postgres',
+  // port: 5432,
 
   // .env-----------------------------------------------------------------------
   // dialect: 'postgres',
