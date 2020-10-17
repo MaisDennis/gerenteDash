@@ -6,8 +6,9 @@ import path from 'path';
 // -----------------------------------------------------------------------------
 
 const s3 = new aws.S3({
-  accessKeyId: 'AKIAX6GO3CRAYESFEYKC',
-  secretAccessKey: '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',
+  accessKeyId: 'AKIAX6GO3CRAZDBUPSHC',
+
+  secretAccessKey: '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',
   Bucket: 'godtaskerfiles',
 });
 

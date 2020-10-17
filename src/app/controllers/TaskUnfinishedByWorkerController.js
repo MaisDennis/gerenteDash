@@ -2,6 +2,7 @@ import { Op } from 'sequelize';
 import Task from '../models/Task';
 import Worker from '../models/Worker';
 import File from '../models/File';
+import User from '../models/User';
 // -----------------------------------------------------------------------------
 class TaskUnfinishedByWorkerController {
   async index(req, res) {
@@ -26,6 +27,11 @@ class TaskUnfinishedByWorkerController {
               attributes: ['name', 'path', 'url'],
             },
           ],
+        },
+        {
+          model: User,
+          as: 'user',
+          attributes: ['id', 'name'],
         },
       ],
     });
