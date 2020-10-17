@@ -6,9 +6,9 @@ import path from 'path';
 // -----------------------------------------------------------------------------
 
 const s3 = new aws.S3({
-  accessKeyId: '',
-  secretAccessKey: '',
-  Bucket: 'godtaskerfiles',
+  accessKeyId: process.env.AWS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  Bucket: process.env.AWS_BUCKET,
 });
 
 function checkFileType(file, cb) {

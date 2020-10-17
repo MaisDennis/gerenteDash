@@ -1,29 +1,21 @@
 // require('dotenv/config');
 
 module.exports = {
-  // development----------------------------------------------------------------
-  // dialect: 'postgres',
-  // host: 'localhost',
-  // username: 'postgres',
-  // password: 'docker',
-  // database: 'postgres',
-  // port: 5436,
-
-  // production-----------------------------------------------------------------
+  // .env for development-------------------------------------------------------
   dialect: 'postgres',
-  host: 'localhost',
-  username: 'postgres',
-  password: 'gerenteDashdeploy',
-  database: 'postgres',
-  port: 5432,
+  host: process.env.DEV_DB_HOST,
+  username: process.env.DEV_DB_USER,
+  password: process.env.DEV_DB_PASS,
+  database: process.env.DEV_DB_NAME,
+  port: process.env.DEV_DB_PORT, // adicionar a porta se não estiver rodando a padrão 5432
 
-  // .env-----------------------------------------------------------------------
+  // .env for production--------------------------------------------------------
   // dialect: 'postgres',
   // host: process.env.DB_HOST,
   // username: process.env.DB_USER,
   // password: process.env.DB_PASS,
   // database: process.env.DB_NAME,
-  // port: 5432, // adicionar a porta se não estiver rodando a padrão 5432
+  // port: process.env.DB_PORT, // adicionar a porta se não estiver rodando a padrão 5432
 
   define: {
     timestamps: true, // saber quando registro foi criado/editado
