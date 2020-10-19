@@ -7,6 +7,9 @@ class SignatureController {
       name,
       path,
     });
+    // *************************************************************************
+    // eslint-disable-next-line no-console
+    console.log(signature);
     return res.json(signature);
   }
 
